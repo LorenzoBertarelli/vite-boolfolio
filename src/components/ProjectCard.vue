@@ -1,4 +1,6 @@
 <script>
+import { store } from '../store';
+
 export default {
     name: 'ProjectCard',
     props: {
@@ -6,7 +8,26 @@ export default {
     },
     data() {
         return {
-            baseUrl: "http://localhost:8000",
+            store,
+        }
+    },
+    computed: {
+        contentPreview() {
+            if(!this.project.content) {
+                return 'Nessun contenuto'
+            } else if (this.project.content && this.project.content.length > 150) {
+                return this.project.content.substring(0, 150) + "...";
+            } else {
+                return this.project.content
+            }
+        },
+        imgSrc() {
+            if(!this.project.image) return "";
+            if(this.project.image.startsWith('http://')) {
+                return this.project.image;
+            } else {
+                return `${this.store.apiBaseUrl}/storage/${this.project.image}`;
+            }
         }
     }
 }
@@ -14,13 +35,14 @@ export default {
 
 <template>
     <div class="card h-100">
-        <img v-if="project.image" src="`${baseUrl}/storage/${project.image}`" class="card-img-top" 
+        <img v-if="project.image" :src="imgSrc" class="card-img-top" 
         :alt="project.title">
         <div v-else>
             Nessuna immagine presente
         </div>
         <div class="card-body">
-            <h4>{{ project.title }}</h4>  
+            <h4>{{ project.title }}</h4> 
+            <p>{{ contentPreview }}</p> 
         </div>
     </div>
 </template>
