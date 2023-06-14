@@ -42,7 +42,21 @@ export default {
         </div>
         <div class="card-body">
             <h4>{{ project.title }}</h4> 
-            <p>{{ contentPreview }}</p> 
+            <p>{{ contentPreview }}</p>
+            <p class="text-primary">
+                <span v-if="project.type">Tipologia: {{ project.type.name }}</span>
+                <span v-else>Nessuna Tipologia</span>
+            </p>
+            <p class="text">
+                <span v-if="project.technologies && project.technologies.length > 0">
+                    Tecnologie:
+                    <span v-for="(technology, index) in project.technologies" :key="technology.id">
+                    {{ technology.name }}
+                    <span v-if="index < project.technologies.length - 1">,</span>
+                    </span>.
+                </span>
+                <span v-else>Nessuna Tecnologia</span>
+            </p>
         </div>
     </div>
 </template>
