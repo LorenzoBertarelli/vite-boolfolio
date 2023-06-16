@@ -45,7 +45,7 @@ import { store } from '../store';
         <div class="project-details" v-if="project">
             <h2>{{ project.title }}</h2>
             <p>Tipologia: {{ project.type ? project.type.name : "Nessuna tipologia presente" }}.</p>
-            <p>Tecnologia: {{ project.technologies && project.technologies.length
+            <p>Tecnologia: {{ project.technologies.length
                 ? project.technologies.map(tech => tech.name).join(', ') 
                 : "Nessuna tecnologia presente" }}.
              </p>
