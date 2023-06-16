@@ -1,6 +1,6 @@
 <script>
     export default {
-        name: 'pagination',
+        name: 'Pagination',
         props: {
             currentPage: Number,
             lastPage: Number

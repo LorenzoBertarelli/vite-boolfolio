@@ -56,9 +56,7 @@
             </div>
         </div>
         <Pagination :currentPage="currentPage" :lastPage="lastPage" 
-        @changePage="(newPageNumber) => {
-            getProjects(newPageNumber)
-        }"  />
+        @changePage="getProject" />
     </section>
     <section v-else="loading" class="text-center mt-5">
         <h2>Stiamo caricando i progetti...</h2>

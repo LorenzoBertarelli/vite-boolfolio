@@ -57,6 +57,10 @@ export default {
                 </span>
                 <span v-else>Nessuna Tecnologia</span>
             </p>
+
+            <router-link :to="{ name: 'single-project', params: { slug: project.slug } }" class="btn btn-primary">
+                Dettagli
+            </router-link>
         </div>
     </div>
 </template>
